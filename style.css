@@ -1,0 +1,336 @@
+/* ============================================
+   TOKENS — sistema de diseño
+   ============================================ */
+:root {
+  --ink-900: #1b2a41;
+  --ink-700: #3a4d6b;
+  --ink-400: #7d8fa9;
+  --paper: #f4f7fb;
+  --paper-line: #d7e0ec;
+  --panel: #ffffff;
+  --brass: #c69a3a;
+  --brass-dark: #a37b23;
+  --blue-deep: #2c4a7c;
+  --ok-shadow: 0 20px 40px -20px rgba(27, 42, 65, 0.25);
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background:
+    linear-gradient(var(--paper-line) 1px, transparent 1px) 0 0 / 100% 28px,
+    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px) 0 0 / 28px 100%,
+    var(--paper);
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================
+   REGLA DECORATIVA — elemento firma
+   ============================================ */
+.ruler {
+  width: 100%;
+  height: 32px;
+  background: var(--ink-900);
+}
+.ruler svg { width: 100%; height: 100%; display: block; }
+.ruler-base { stroke: var(--brass); stroke-width: 1; }
+
+/* ============================================
+   LAYOUT GENERAL
+   ============================================ */
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+}
+
+.page-head { margin-bottom: 32px; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass-dark);
+  margin: 0 0 10px;
+}
+
+.page-head h1 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: var(--ink-900);
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--ink-700);
+  font-size: 1rem;
+}
+
+/* ============================================
+   DIAL DE CATEGORÍAS
+   ============================================ */
+.dial {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.dial-btn {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink-700);
+  background: var(--panel);
+  border: 1px solid var(--paper-line);
+  border-radius: 999px;
+  padding: 9px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.dial-btn:hover {
+  border-color: var(--blue-deep);
+  color: var(--blue-deep);
+}
+
+.dial-btn.active {
+  background: var(--ink-900);
+  border-color: var(--ink-900);
+  color: var(--paper);
+}
+
+.dial-btn .ico { font-size: 1rem; }
+
+/* ============================================
+   PANEL PRINCIPAL DEL CONVERSOR
+   ============================================ */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--paper-line);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: var(--ok-shadow);
+}
+
+.panel-hint {
+  margin: 0 0 20px;
+  font-size: 0.94rem;
+  color: var(--ink-700);
+}
+.panel-hint strong {
+  color: var(--blue-deep);
+}
+
+.converter {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: 14px;
+}
+
+.field-tag {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-400);
+  margin-top: 6px;
+}
+
+.field label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-400);
+  margin-bottom: 8px;
+}
+
+#inputValue {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--ink-900);
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+#inputValue:focus, select:focus, .swap-btn:focus {
+  outline: 2px solid var(--blue-deep);
+  outline-offset: 2px;
+}
+
+.readout {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--blue-deep);
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.readout-unit {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--brass-dark);
+  margin-left: 6px;
+}
+
+select {
+  width: 100%;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  color: var(--ink-900);
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-radius: 10px;
+  padding: 9px 10px;
+  cursor: pointer;
+}
+
+.swap-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--paper-line);
+  background: var(--paper);
+  color: var(--blue-deep);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 44px;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.swap-btn:hover {
+  background: var(--ink-900);
+  color: var(--brass);
+  transform: rotate(180deg);
+}
+
+.formula {
+  margin: 22px 0 0;
+  padding: 14px 16px;
+  background: var(--paper);
+  border: 1px dashed var(--paper-line);
+  border-radius: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--ink-900);
+  text-align: center;
+}
+.formula strong {
+  color: var(--brass-dark);
+}
+
+.hint-error {
+  margin: 10px 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #b3452f;
+  text-align: center;
+}
+
+/* ============================================
+   REFERENCIA RÁPIDA
+   ============================================ */
+.reference { margin-top: 32px; }
+
+.reference h2 {
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-400);
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.ref-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.ref-item {
+  background: var(--panel);
+  border: 1px solid var(--paper-line);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.ref-item .ref-unit {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--ink-400);
+  margin-bottom: 4px;
+}
+
+.ref-item .ref-val {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.page-foot {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.8rem;
+  color: var(--ink-400);
+  font-family: var(--font-mono);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 560px) {
+  .converter {
+    grid-template-columns: 1fr;
+  }
+  .swap-btn {
+    margin: 0 auto;
+    transform: rotate(90deg);
+  }
+  .swap-btn:hover { transform: rotate(270deg); }
+}
+
+/* Respeta preferencia de reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .swap-btn, .dial-btn { transition: none; }
+  .swap-btn:hover { transform: none; }
+}
